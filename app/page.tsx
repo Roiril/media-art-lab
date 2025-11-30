@@ -3,6 +3,14 @@ import Link from "next/link";
 // 作品リストのデータ
 const PROJECTS = [
   {
+    id: "blackhole",
+    title: "GRAVITY SINGULARITY",
+    description: "事象の地平線への物質の降着をシミュレート。重力レンズ効果と軌道力学の可視化。",
+    href: "/blackhole",
+    color: "from-purple-600 to-indigo-900", // 宇宙っぽい深い色
+    tags: ["Physics", "Space", "Simulation"],
+  },
+  {
     id: "neural",
     title: "COLOR PREFERENCE AI",
     description: "R・G・Bのスライダーで色を作ると、AIがその色を「好き」か「嫌い」かで判定します。リロードで性格が変わります。",
@@ -11,20 +19,20 @@ const PROJECTS = [
     tags: ["AI", "Color", "Network"],
   },
   {
-    id: "life",
-    title: "GAME OF LIFE",
-    description: "コンウェイのライフゲーム。超高精細グリッドと有名パターンのプリセット再生。",
-    href: "/life",
-    color: "from-green-400 to-emerald-600",
-    tags: ["Simulation", "ALife"],
-  },
-  {
     id: "lsystem",
     title: "L-SYSTEM FRACTAL",
     description: "単純な文字の置換ルールから、複雑な植物の形状を生成するアルゴリズムの可視化。",
     href: "/lsystem",
     color: "from-yellow-400 to-orange-600",
     tags: ["Generative", "Fractal"],
+  },
+  {
+    id: "life",
+    title: "GAME OF LIFE",
+    description: "コンウェイのライフゲーム。超高精細グリッドと有名パターンのプリセット再生。",
+    href: "/life",
+    color: "from-green-400 to-emerald-600",
+    tags: ["Simulation", "ALife"],
   },
 ];
 
@@ -38,7 +46,7 @@ export default function HubPage() {
             Roil's <span className="text-gray-500">Experiments</span>
           </h1>
           <p className="text-sm text-gray-400">
-            FMS / HCI Research / Interactive Playground
+            Media Art Lab / FMS / HCI Research
           </p>
         </div>
         <div className="text-xs text-gray-600 hidden md:block">
