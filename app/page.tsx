@@ -1,65 +1,100 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+// 作品リストのデータ
+const PROJECTS = [
+  {
+    id: "neural",
+    title: "COLOR PREFERENCE AI",
+    description: "R・G・Bのスライダーで色を作ると、AIがその色を「好き」か「嫌い」かで判定します。リロードで性格が変わります。",
+    href: "/neural",
+    color: "from-pink-500 to-blue-500",
+    tags: ["AI", "Color", "Network"],
+  },
+  {
+    id: "life",
+    title: "GAME OF LIFE",
+    description: "コンウェイのライフゲーム。超高精細グリッドと有名パターンのプリセット再生。",
+    href: "/life",
+    color: "from-green-400 to-emerald-600",
+    tags: ["Simulation", "ALife"],
+  },
+  {
+    id: "lsystem",
+    title: "L-SYSTEM FRACTAL",
+    description: "単純な文字の置換ルールから、複雑な植物の形状を生成するアルゴリズムの可視化。",
+    href: "/lsystem",
+    color: "from-yellow-400 to-orange-600",
+    tags: ["Generative", "Fractal"],
+  },
+];
+
+export default function HubPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-black text-white font-mono selection:bg-white selection:text-black">
+      {/* ヘッダーエリア */}
+      <header className="p-8 border-b border-gray-900 flex justify-between items-end">
+        <div>
+          <h1 className="text-4xl font-bold tracking-tighter mb-2">
+            Roil's <span className="text-gray-500">Experiments</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-sm text-gray-400">
+            FMS / HCI Research / Interactive Playground
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="text-xs text-gray-600 hidden md:block">
+          BUILT WITH NEXT.JS
+        </div>
+      </header>
+
+      {/* メイングリッド */}
+      <main className="p-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PROJECTS.map((project) => (
+            <Link
+              key={project.id}
+              href={project.href}
+              className={`
+                group relative block p-6 rounded-xl border border-gray-800 bg-gray-950/50 
+                hover:border-gray-600 transition-all duration-300 hover:-translate-y-1 overflow-hidden
+              `}
+            >
+              {/* 背景のグラデーション（ホバー時にふわっと光る） */}
+              <div
+                className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${project.color}`}
+              />
+
+              {/* カード内容 */}
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-gray-800 bg-black/50 text-gray-400"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <h2 className="text-xl font-bold mb-2 group-hover:text-white transition-colors text-gray-200">
+                  {project.title}
+                </h2>
+                <p className="text-sm text-gray-500 leading-relaxed mb-8 flex-grow">
+                  {project.description}
+                </p>
+
+                <div className="flex items-center text-xs font-bold text-gray-400 group-hover:text-white transition-colors">
+                  LAUNCH PROJECT <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </main>
+
+      <footer className="fixed bottom-0 w-full p-4 border-t border-gray-900 bg-black/80 backdrop-blur text-center text-xs text-gray-700 pointer-events-none">
+        © {new Date().getFullYear()} ROIL PORTFOLIO
+      </footer>
     </div>
   );
 }
