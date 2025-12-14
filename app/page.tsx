@@ -3,6 +3,14 @@ import Link from "next/link";
 // 作品リストのデータ
 const PROJECTS = [
   {
+    id: "lumina",
+    title: "LUMINA GRID(TENORAN)",
+    description: "Web Tenori-On。光と音の連鎖を楽しむ、グリッドベースのインタラクティブ・シーケンサー。",
+    href: "/lumina-grid", // フォルダ名と一致させる必要があります
+    color: "from-cyan-400 to-blue-600", // 爽やかな光っぽい色にしました
+    tags: ["Music", "Interactive", "Audio"],
+  },
+  {
     id: "blackhole",
     title: "GRAVITY SINGULARITY",
     description: "事象の地平線への物質の降着をシミュレート。重力レンズ効果と軌道力学の可視化。",
