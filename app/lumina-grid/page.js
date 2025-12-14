@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-// --- Safe Icons (No change in logic, just memoized for slight perf gain) ---
+// --- Safe Icons (Memoized for performance) ---
 const PlayIcon = React.memo(() => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none">
     <path d="M8 5v14l11-7z" />
@@ -640,7 +640,8 @@ export default function TenoriOn() {
       <div className="flex-1 w-full min-h-0 flex flex-col lg:flex-row items-center justify-center p-2 md:p-4 gap-2 lg:gap-8">
 
         {/* --- Grid Container --- */}
-        <div className="flex-1 w-full relative min-h-0 grid-container">
+        {/* ここに h-full を追加して、親の高さに追従させます */}
+        <div className="flex-1 w-full relative min-h-0 grid-container h-full">
           <div
             className="absolute inset-0 m-auto aspect-square w-auto h-auto max-w-full max-h-full bg-gradient-to-br from-gray-300 to-gray-500 p-2 md:p-3 rounded-[2rem] shadow-2xl border border-gray-600"
             style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.3)' }}
